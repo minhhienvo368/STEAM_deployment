@@ -1,4 +1,5 @@
 import dash
+import os
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
@@ -205,8 +206,12 @@ def run_query(value):
 
 # Running the server
 if __name__ == "__main__":
-    app.run_server()
-
+    #app.run_server()
+    port = int(os.environ.get('PORT', 5000))
+    # Threaded option to enable multiple instances for
+    # multiple user access support
+    # You will also define the host to "0.0.0.0" because localhost will only be reachable from inside de server.
+    app.run_server(host="127.0.0.1", threaded=True, port=port)
 
 '''
 table = STEAM_GAMES
